@@ -1,0 +1,15 @@
+{
+  "name": "com.vira.com.vira.applovinmax",
+  "version": "5.9.0",
+  "displayName": "ApplovinMax",
+  "keywords": [
+    "Google",
+    "Analytics",
+    "Firebase"
+  ],
+  "author": {
+    "name": "Vira Games",
+    "url": "https://gitlab.com/Gleb8911/firebase-analytics.git"
+  },
+  "description": "ApplovinMax"
+}
