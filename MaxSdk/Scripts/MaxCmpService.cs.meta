@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 81d22493c258b384fa69a89fd0846b80
+guid: 64fb89cb3632b4b4a9dbf73423ce1de7
 labels:
 - al_max
-- al_max_export_path-MaxSdk/Scripts/IntegrationManager/Editor/AppLovinPreProcessAndroid.cs
+- al_max_export_path-MaxSdk/Scripts/MaxCmpService.cs
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
