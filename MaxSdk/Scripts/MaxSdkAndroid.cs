@@ -13,6 +13,11 @@ public class MaxSdkAndroid : MaxSdkBase
 
     private static BackgroundCallbackProxy BackgroundCallback = new BackgroundCallbackProxy();
 
+    public static MaxVariableServiceAndroid VariableService
+    {
+        get { return MaxVariableServiceAndroid.Instance; }
+    }
+
     public static MaxUserServiceAndroid UserService
     {
         get { return MaxUserServiceAndroid.Instance; }
@@ -410,19 +415,17 @@ public class MaxSdkAndroid : MaxSdkBase
     /// </summary>
     /// <param name="adUnitIdentifier">Ad unit identifier of the banner to set the local extra parameter for.</param>
     /// <param name="key">The key for the local extra parameter.</param>
-    /// <param name="value">The value for the extra parameter. Accepts the following types: <see cref="AndroidJavaObject"/>, <c>null</c>, <c>IList</c>, <c>IDictionary</c>, <c>string</c>, primitive types</param>
+    /// <param name="value">The value for the extra parameter. Needs to be of type <see cref="AndroidJavaObject"/> or <c>null</c></param>
     public static void SetBannerLocalExtraParameter(string adUnitIdentifier, string key, object value)
     {
-        ValidateAdUnitIdentifier(adUnitIdentifier, "set banner local extra parameter");
+        if (value != null && value.GetType() != typeof(AndroidJavaObject))
+        {
+            MaxSdkLogger.E("Failed to set local extra parameter. Android local extra parameters need to be of type AndroidJavaObject");
+            return;
+        }
 
-        if (value == null || value is AndroidJavaObject)
-        {
-            MaxUnityPluginClass.CallStatic("setBannerLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
-        }
-        else
-        {
-            MaxUnityPluginClass.CallStatic("setBannerLocalExtraParameterJson", adUnitIdentifier, key, SerializeLocalExtraParameterValue(value));
-        }
+        ValidateAdUnitIdentifier(adUnitIdentifier, "set banner local extra parameter");
+        MaxUnityPluginClass.CallStatic("setBannerLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
     }
 
     /// <summary>
@@ -595,19 +598,17 @@ public class MaxSdkAndroid : MaxSdkBase
     /// </summary>
     /// <param name="adUnitIdentifier">Ad unit identifier of the MREC to set the local extra parameter for.</param>
     /// <param name="key">The key for the local extra parameter.</param>
-    /// <param name="value">The value for the extra parameter. Accepts the following types: <see cref="AndroidJavaObject"/>, <c>null</c>, <c>IList</c>, <c>IDictionary</c>, <c>string</c>, primitive types</param>
+    /// <param name="value">The value for the extra parameter. Needs to be of type <see cref="AndroidJavaObject"/> or <c>null</c></param>
     public static void SetMRecLocalExtraParameter(string adUnitIdentifier, string key, object value)
     {
-        ValidateAdUnitIdentifier(adUnitIdentifier, "set MREC local extra parameter");
+        if (value != null && value.GetType() != typeof(AndroidJavaObject))
+        {
+            MaxSdkLogger.E("Failed to set local extra parameter. Android local extra parameters need to be of type AndroidJavaObject");
+            return;
+        }
 
-        if (value == null || value is AndroidJavaObject)
-        {
-            MaxUnityPluginClass.CallStatic("setMRecLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
-        }
-        else
-        {
-            MaxUnityPluginClass.CallStatic("setMRecLocalExtraParameterJson", adUnitIdentifier, key, SerializeLocalExtraParameterValue(value));
-        }
+        ValidateAdUnitIdentifier(adUnitIdentifier, "set MREC local extra parameter");
+        MaxUnityPluginClass.CallStatic("setMRecLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
     }
 
     /// <summary>
@@ -790,19 +791,17 @@ public class MaxSdkAndroid : MaxSdkBase
     /// </summary>
     /// <param name="adUnitIdentifier">Ad unit identifier of the interstitial to set the local extra parameter for.</param>
     /// <param name="key">The key for the local extra parameter.</param>
-    /// <param name="value">The value for the extra parameter. Accepts the following types: <see cref="AndroidJavaObject"/>, <c>null</c>, <c>IList</c>, <c>IDictionary</c>, <c>string</c>, primitive types</param>
+    /// <param name="value">The value for the extra parameter. Needs to be of type <see cref="AndroidJavaObject"/> or <c>null</c></param>
     public static void SetInterstitialLocalExtraParameter(string adUnitIdentifier, string key, object value)
     {
-        ValidateAdUnitIdentifier(adUnitIdentifier, "set interstitial local extra parameter");
+        if (value != null && value.GetType() != typeof(AndroidJavaObject))
+        {
+            MaxSdkLogger.E("Failed to set local extra parameter. Android local extra parameters need to be of type AndroidJavaObject");
+            return;
+        }
 
-        if (value == null || value is AndroidJavaObject)
-        {
-            MaxUnityPluginClass.CallStatic("setInterstitialLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
-        }
-        else
-        {
-            MaxUnityPluginClass.CallStatic("setInterstitialLocalExtraParameterJson", adUnitIdentifier, key, SerializeLocalExtraParameterValue(value));
-        }
+        ValidateAdUnitIdentifier(adUnitIdentifier, "set interstitial local extra parameter");
+        MaxUnityPluginClass.CallStatic("setInterstitialLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
     }
 
     #endregion
@@ -867,19 +866,17 @@ public class MaxSdkAndroid : MaxSdkBase
     /// </summary>
     /// <param name="adUnitIdentifier">Ad unit identifier of the app open ad to set the local extra parameter for.</param>
     /// <param name="key">The key for the local extra parameter.</param>
-    /// <param name="value">The value for the extra parameter. Accepts the following types: <see cref="AndroidJavaObject"/>, <c>null</c>, <c>IList</c>, <c>IDictionary</c>, <c>string</c>, primitive types</param>
+    /// <param name="value">The value for the extra parameter. Needs to be of type <see cref="AndroidJavaObject"/> or <c>null</c></param>
     public static void SetAppOpenAdLocalExtraParameter(string adUnitIdentifier, string key, object value)
     {
-        ValidateAdUnitIdentifier(adUnitIdentifier, "set app open ad local extra parameter");
+        if (value != null && value.GetType() != typeof(AndroidJavaObject))
+        {
+            MaxSdkLogger.E("Failed to set local extra parameter. Android local extra parameters need to be of type AndroidJavaObject");
+            return;
+        }
 
-        if (value == null || value is AndroidJavaObject)
-        {
-            MaxUnityPluginClass.CallStatic("setAppOpenAdLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
-        }
-        else
-        {
-            MaxUnityPluginClass.CallStatic("setAppOpenAdLocalExtraParameterJson", adUnitIdentifier, key, SerializeLocalExtraParameterValue(value));
-        }
+        ValidateAdUnitIdentifier(adUnitIdentifier, "set app open ad local extra parameter");
+        MaxUnityPluginClass.CallStatic("setAppOpenAdLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
     }
 
     #endregion
@@ -944,19 +941,17 @@ public class MaxSdkAndroid : MaxSdkBase
     /// </summary>
     /// <param name="adUnitIdentifier">Ad unit identifier of the rewarded to set the local extra parameter for.</param>
     /// <param name="key">The key for the local extra parameter.</param>
-    /// <param name="value">The value for the extra parameter. Accepts the following types: <see cref="AndroidJavaObject"/>, <c>null</c>, <c>IList</c>, <c>IDictionary</c>, <c>string</c>, primitive types</param>
+    /// <param name="value">The value for the extra parameter. Needs to be of type <see cref="AndroidJavaObject"/> or <c>null</c></param>
     public static void SetRewardedAdLocalExtraParameter(string adUnitIdentifier, string key, object value)
     {
-        ValidateAdUnitIdentifier(adUnitIdentifier, "set rewarded ad local extra parameter");
+        if (value != null && value.GetType() != typeof(AndroidJavaObject))
+        {
+            MaxSdkLogger.E("Failed to set local extra parameter. Android local extra parameters need to be of type AndroidJavaObject");
+            return;
+        }
 
-        if (value == null || value is AndroidJavaObject)
-        {
-            MaxUnityPluginClass.CallStatic("setRewardedAdLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
-        }
-        else
-        {
-            MaxUnityPluginClass.CallStatic("setRewardedAdLocalExtraParameterJson", adUnitIdentifier, key, SerializeLocalExtraParameterValue(value));
-        }
+        ValidateAdUnitIdentifier(adUnitIdentifier, "set rewarded ad local extra parameter");
+        MaxUnityPluginClass.CallStatic("setRewardedAdLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
     }
 
     #endregion
@@ -1021,19 +1016,17 @@ public class MaxSdkAndroid : MaxSdkBase
     /// </summary>
     /// <param name="adUnitIdentifier">Ad unit identifier of the rewarded interstitial to set the local extra parameter for.</param>
     /// <param name="key">The key for the local extra parameter.</param>
-    /// <param name="value">The value for the extra parameter. Accepts the following types: <see cref="AndroidJavaObject"/>, <c>null</c>, <c>IList</c>, <c>IDictionary</c>, <c>string</c>, primitive types</param>
+    /// <param name="value">The value for the extra parameter. Needs to be of type <see cref="AndroidJavaObject"/> or <c>null</c></param>
     public static void SetRewardedInterstitialAdLocalExtraParameter(string adUnitIdentifier, string key, object value)
     {
-        ValidateAdUnitIdentifier(adUnitIdentifier, "set rewarded interstitial ad local extra parameter");
+        if (value != null && value.GetType() != typeof(AndroidJavaObject))
+        {
+            MaxSdkLogger.E("Failed to set local extra parameter. Android local extra parameters need to be of type AndroidJavaObject");
+            return;
+        }
 
-        if (value == null || value is AndroidJavaObject)
-        {
-            MaxUnityPluginClass.CallStatic("setRewardedInterstitialAdLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
-        }
-        else
-        {
-            MaxUnityPluginClass.CallStatic("setRewardedInterstitialAdLocalExtraParameterJson", adUnitIdentifier, key, SerializeLocalExtraParameterValue(value));
-        }
+        ValidateAdUnitIdentifier(adUnitIdentifier, "set rewarded interstitial ad local extra parameter");
+        MaxUnityPluginClass.CallStatic("setRewardedInterstitialAdLocalExtraParameter", adUnitIdentifier, key, (AndroidJavaObject) value);
     }
 
     #endregion
@@ -1110,12 +1103,6 @@ public class MaxSdkAndroid : MaxSdkBase
     /// <param name="advertisingIdentifiers">String list of advertising identifiers from devices to receive test ads.</param>
     public static void SetTestDeviceAdvertisingIdentifiers(string[] advertisingIdentifiers)
     {
-        if (IsInitialized())
-        {
-            MaxSdkLogger.UserError("Test Device Advertising Identifiers must be set before SDK initialization.");
-            return;
-        }
-
         // Wrap the string array in an object array, so the compiler does not split into multiple strings.
         object[] arguments = {advertisingIdentifiers};
         MaxUnityPluginClass.CallStatic("setTestDeviceAdvertisingIds", arguments);
@@ -1237,7 +1224,14 @@ public class MaxSdkAndroid : MaxSdkBase
 
         public void onEvent(string propsStr)
         {
-            HandleBackgroundCallback(propsStr);
+            try
+            {
+                MaxSdkCallbacks.Instance.ForwardEvent(propsStr);
+            }
+            catch (Exception exception)
+            {
+                MaxSdkLogger.UserError("Unable to notify ad delegate due to exception: " + exception.Message);
+            }
         }
     }
 }
