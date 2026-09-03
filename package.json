@@ -1,6 +1,6 @@
 {
   "name": "com.vira.applovinmax",
-  "version": "8.5.1",
+  "version": "8.6.5",
   "displayName": "ApplovinMax",
   "keywords": [
     "Google",
@@ -9,7 +9,7 @@
   ],
   "author": {
     "name": "Vira Games",
-    "url": "https://gitlab.com/Gleb8911/firebase-analytics.git"
+    "url": "https://github.com/Vira-Games/tool-vira-engine-sdk-applovin-max.git"
   },
   "description": "ApplovinMax"
 }
